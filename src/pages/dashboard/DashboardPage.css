@@ -1,46 +1,44 @@
-
-
 .dashboard-container {
-    height: 100vh;
-    background-color: #1C1C1C; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background-color: #1c1c1c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-  
+
 .error-box {
-    background-color: #F3EDED; 
-    padding: 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background-color: #f3eded;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
-  
+
 .error-code {
-    font-size: 5rem;
-    color: #ff1e1e; 
-    background-color: #F3EDED;
-    margin: -25px;
+  font-size: 5rem;
+  color: #ff1e1e;
+  background-color: #f3eded;
+  margin: -25px;
 }
-  
+
 .error-message {
-    background-color: #F3EDED;
-    font-size: 24px;
-    margin: 25px 0;
-    color: #0C0B0C; 
+  background-color: #f3eded;
+  font-size: 24px;
+  margin: 25px 0;
+  color: #0c0b0c;
 }
-  
+
 .home-button {
-    padding: 10px 20px;
-    background-color: #056DB3;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  background-color: #056db3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
-  
+
 .home-button:hover {
-    background-color: #074670; 
+  background-color: #074670;
 }
