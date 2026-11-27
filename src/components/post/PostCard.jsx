@@ -1,45 +1,56 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from "react";
+import PropTypes from "prop-types";
 import PostModal from "./PostModal.jsx";
-import '../../pages/homePage/HomePage.css';
-
-const PostCard = ({ post }) => {
-    const [showModal, setShowModal] = useState(false);
-    const { title, text, date, category, author, urlImage, status } = post;
-
-
-
+export default function PostCard({ post }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className={`post-card ${status ? '' : 'inactive'}`}>
-      {urlImage && <img src={urlImage} alt="Post" className="post-image" />}
-
+    <article className="post-card">
+      {post.urlImage ? (
+        <img
+          src={post.urlImage}
+          alt=""
+          className="post-image"
+          loading="lazy"
+          onError={(event) => {
+            event.currentTarget.hidden = true;
+          }}
+        />
+      ) : null}
       <div className="post-header">
-        <h3 className="post-title">{title}</h3>
-        <span className="post-author">@{author}</span>
+        <span className="post-category">
+          {post.category?.name ?? "General"}
+        </span>
+        <h2 className="post-title">{post.title}</h2>
+        <span className="post-author">
+          Por {post.author || "Equipo del blog"}
+        </span>
       </div>
-
-      <p className="post-text">{category.description}</p>
-      <p className="post-meta">{date} - {category.name}</p>
-
-      <div className="comment-section">
-          <button onClick={() => setShowModal(true)} className="comment-button">
-            Ver Más...
-          </button>
-        </div>
-
-      {showModal && <PostModal post={post} onClose={() => setShowModal(false)} />}
-
-    </div>
+      <p className="post-text">
+        {post.category?.description ?? post.text?.slice(0, 180)}
+      </p>
+      <p className="post-meta">{post.date ?? ""}</p>
+      <button
+        onClick={() => setOpen(true)}
+        className="comment-button"
+        aria-label={`Leer ${post.title}`}
+      >
+        Leer y comentar
+      </button>
+      {open ? <PostModal post={post} onClose={() => setOpen(false)} /> : null}
+    </article>
   );
-};
-
+}
 PostCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  category: PropTypes.string,
-  author: PropTypes.string.isRequired,
-  urlImage: PropTypes.string,
-  status: PropTypes.bool.isRequired,
+  post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string,
+    author: PropTypes.string,
+    date: PropTypes.string,
+    urlImage: PropTypes.string,
+    category: PropTypes.shape({
+      name: PropTypes.string,
+      description: PropTypes.string,
+    }),
+  }).isRequired,
 };
-
-export default PostCard;
